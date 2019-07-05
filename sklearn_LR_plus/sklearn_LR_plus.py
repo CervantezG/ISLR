@@ -60,6 +60,18 @@ def get_p_values(reg, X, Y):
 
 
 def summary(reg, X, Y):
+    summary = dict()
+
+    # Get information on hypothesis tests ran against individual coefficients
+    summary['coef_tests'] = __coef_tests(reg, X, Y)
+
+    # Get residuals distribution information
+    summary['residuals'] = __residuals_data(reg, X, Y)
+
+    return summary
+
+
+def __coef_tests(reg, X, Y):
     columns = ['Coef.', 'Std. Error', 't-value', 'p-value']
     idx = ['Intercept'] + X.columns.tolist()
     B = pd.Series(np.append(reg.intercept_, reg.coef_), idx)
@@ -72,6 +84,11 @@ def summary(reg, X, Y):
     summ_df.index = idx
 
     return summ_df
+
+def __residuals_data(reg, X, Y):
+    residuals = (Y - reg.predict(X)).describe()
+    residuals.name = 'Residuals'
+    return residuals.drop(labels=['count', 'mean'])
 
 
 def __get_rse(reg, X, Y):

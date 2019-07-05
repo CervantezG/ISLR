@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
+            <state relative-caret-position="51">
+              <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -26,19 +26,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+            <state relative-caret-position="1632">
+              <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
                 <element signature="e#193#1826#0" />
                 <element signature="e#2023#3797#0" />
                 <element signature="e#2149#2992#0" />
                 <element signature="e#3727#5395#0" />
-                <element signature="e#5439#6837#0" />
-                <element signature="e#6288#6837#0" />
               </folding>
             </state>
           </provider>
@@ -240,21 +238,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_in_sklearn_LR_plus_unittest_py - 2019.07.05 at 13h 56m 18s.xml">
-      <configuration name="pytest in sklearn_LR_plus_unittest.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_p_values_test_get_p_values_advertising_simple - 2019.07.05 at 14h 09m 39s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_p_values_test_get_p_values_advertising_simple - 2019.07.05 at 14h 10m 29s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_p_values_test_get_p_values_advertising_multi - 2019.07.05 at 14h 11m 32s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_sklearn_LR_plus_unittest_py - 2019.07.05 at 14h 13m 16s.xml">
-      <configuration name="pytest in sklearn_LR_plus_unittest.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_summary_advertising_simple - 2019.07.05 at 15h 15m 06s.xml">
       <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" configurationId="tests" />
     </history-entry>
@@ -270,12 +253,28 @@
     <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 15h 24m 56s.xml">
       <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_summary_advertising_simple - 2019.07.05 at 15h 49m 59s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 15h 50m 37s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 15h 52m 01s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 16h 00m 02s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 16h 01m 08s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -283,7 +282,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -356,28 +355,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+        <state relative-caret-position="1632">
+          <caret line="248" lean-forward="true" selection-start-line="248" selection-end-line="248" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
             <element signature="e#193#1826#0" />
             <element signature="e#2023#3797#0" />
             <element signature="e#2149#2992#0" />
             <element signature="e#3727#5395#0" />
-            <element signature="e#5439#6837#0" />
-            <element signature="e#6288#6837#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

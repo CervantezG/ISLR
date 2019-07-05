@@ -190,7 +190,9 @@ class TestSummary(unittest.TestCase):
             reg = LinearRegression()
             reg.fit(X, Y)
 
-            summ_dfs = lrp.summary(reg, X, Y)
+
+            summary = lrp.summary(reg, X, Y)
+            summ_dfs = summary['coef_tests']
 
             actual = summ_dfs.shape
             expected = [2, 4]
@@ -215,18 +217,31 @@ class TestSummary(unittest.TestCase):
         reg = LinearRegression()
         reg.fit(X, Y)
 
-        summ_dfs = lrp.summary(reg, X, Y)
+        summary = lrp.summary(reg, X, Y)
+
+        # Test coef_tests
+        summ_dfs = summary['coef_tests']
 
         actual = summ_dfs.shape
         expected = [4, 4]
 
         self.assertListEqual(list(actual), expected)
 
-        # All p-values are essentially zero except newspaper
+        # All p-values are essentially zero except newspaper which is ~ 0.85
         actual = summ_dfs['p-value'].sum()
-        expected = 0.90
+        expected_high = 0.90
+        expected_low = 0.80
+        self.assertTrue(actual < expected_high)
+        self.assertTrue(actual > expected_low)
 
-        self.assertTrue(actual < expected)
+        # Test residuals
+        expected = pd.Series(data=[-8.8277, -0.8908, 0.2418, 1.1893, 2.8292],
+                             index=['min', '25%', '50%', '75%', 'max'])
+        expected.name = 'Residuals'
+
+        actual = summary['residuals'].drop('std')
+
+        pd.testing.assert_series_equal(actual, expected, check_less_precise=4)
 
 
 if __name__ == '__main__':
