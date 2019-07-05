@@ -1,0 +1,50 @@
+(1.a) Better because the large number of samples will allow for a greater probability that the pattern can be found.  
+
+(1.b) Worse because the model would likely overfit to the small number of observations and miss the greater pattern.
+
+(1.c) Better because it would be unlikely that you would assume the correct shape of the function.
+
+(1.d) Worse because the method would fit to the noise, i.e. e.  
+
+(2.a) Regression - Inference.
+n = 500 firms
+p = [profit, # of employees, industry]
+
+(2.b) Classification - Prediction
+n = 20 products
+p = [price, marketing budger, competition price, ten other things]
+
+(2.c) Regression - Prediction
+n = 52 weeks of 2012
+p = [% change USD/Euro, % change US marker, % change in British market, % change in German market]
+
+(3.a) See pic.
+
+(3.b)
+Bias - Descreases monotonically as the model is fitted better and better to the training set.
+
+Variance - Increases monotonically as the model is overfitted. 
+
+Training Error - Descreases monotonically as the model is fitted better and better to the training set.
+
+Test Error - U-shaped because the model fits better with some flexability but too much flexability is just reading noise in the training data.
+
+Bayes Error - A constant error that is not tied to X so it is just a straight line.
+
+(4.a) Will a prisoner commit another crime; hot dog  vs not hot dog; is email spam
+
+(4.b) How tall will this child be as an adult; what is the price of XYZ stock; what is this persons credit score
+
+(4.c) What are the types of cancer?  Who buys my products?  What are the types of students in a class?
+
+(5) The advantages of a more flexible approach is that it can accomodate a wider variety of function "shapes".  If what you are trying to predict is very complex then taking a close look at more flexible models would generally be a good idea.  A disadvantage of a more flexible approach is that it generally requires more parameters and can potentially lead to overfitting (high variance).  An advantage to a less flexible approach is that it is more easily interpretted.  
+
+(6) A parametric approach assumes that we already know the shape of the function.  A non-parametric approach searches for that shape.  One disadvantage of a non-parametric approach is that it typically requires more samples.  Also parametric approaches typically are easier to compute.  The disadvantage of a parametric approach is that we are royally fucked if we assume the wrong type of function shape.
+
+(7.a) sqrt(x^2 + y^2 + z^2).  Apply this to all rows.
+
+(7.b) Green because (-1, 0, 1) is the smallest distance away.
+
+(7.c) Red because two of the three closest Y are Red.  See observations 5, 6, and 2.
+
+(7.d) Small because this would lead to a more fleixible model.  
