@@ -5,6 +5,7 @@ from scipy import stats
 
 # TODO: "Overload" functions so that I can not redo work when calling t-value, p-values, etc. - https://stackoverflow.com/questions/7113032/overloaded-functions-in-python
 # TODO: Add plots.  I believe I have some of the plots to add on my hand written notes.
+# TODO: Add mixed selection automation (ISLR pg. 79). POTENTIAL_OPTIONS: Fix skew response, Fix skew predictors, lambda new columns, collinearity drop, collinearity combine
 
 def get_standard_errors(reg, X, Y):
     '''
