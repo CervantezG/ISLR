@@ -4,6 +4,7 @@ import pandas as pd
 from scipy import stats
 
 # TODO: "Overload" functions so that I can not redo work when calling t-value, p-values, etc. - https://stackoverflow.com/questions/7113032/overloaded-functions-in-python
+# TODO: Add plots.  I believe I have some of the plots to add on my hand written notes.
 
 def get_standard_errors(reg, X, Y):
     '''
@@ -68,7 +69,49 @@ def summary(reg, X, Y):
     # Get residuals distribution information
     summary['residuals'] = __residuals_data(reg, X, Y)
 
+    # Get general information
+    summary['general'] = __general(reg, X, Y)
+
     return summary
+
+# TODO: Add p-value and adjusted R^2 to __general.  Currently they have placeholders of -99.
+def __general(reg, X, Y):
+    '''
+
+    :param reg:
+    :param X:
+    :param Y:
+    :return:
+    '''
+    idx = ['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2']
+
+    values = list()
+    values.append(__get_rse(reg, X, Y))
+    values.append(__f_stat(reg, X, Y))
+    values.append(-99)
+    values.append(reg.score(X, Y))
+    values.append(-99)
+
+    se = pd.Series(data=values, index=idx)
+    se.name = 'General'
+    return se
+
+
+def __f_stat(reg, X, Y):
+    '''
+    ISLR pg. 75
+
+    :param reg:
+    :param X:
+    :param Y:
+    :return:
+    '''
+    n = Y.size
+    p = X.columns.size
+    tss = np.power(Y - Y.mean(), 2).sum()
+    rss = np.power(reg.predict(X) - Y, 2).sum()
+
+    return ((tss - rss) / p) / (rss / (n - p - 1))
 
 
 def __coef_tests(reg, X, Y):
@@ -104,4 +147,23 @@ def __get_rse(reg, X, Y):
     return np.sqrt( rss / (Y.size - X.columns.size - 1))
 
 
+
+'''
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.8277 -0.8908  0.2418  1.1893  2.8292 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  2.938889   0.311908   9.422   <2e-16 ***
+TV           0.045765   0.001395  32.809   <2e-16 ***
+radio        0.188530   0.008611  21.893   <2e-16 ***
+newspaper   -0.001037   0.005871  -0.177     0.86    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.686 on 196 degrees of freedom
+Multiple R-squared:  0.8972,	Adjusted R-squared:  0.8956 
+F-statistic: 570.3 on 3 and 196 DF,  p-value: < 2.2e-16
+'''
 

@@ -243,6 +243,20 @@ class TestSummary(unittest.TestCase):
 
         pd.testing.assert_series_equal(actual, expected, check_less_precise=4)
 
+        # Test general
+        expected = pd.Series(data=[1.686, 570.3, -99, 0.8972, -99],
+                             index=['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2'])
+        expected.name = 'General'
+
+        actual = summary['general']
+
+        self.assertAlmostEqual(actual['f-stat'], expected['f-stat'], places=1)
+
+        expected.drop('f-stat', inplace=True)
+        actual.drop('f-stat', inplace=True)
+
+        pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
+
 
 if __name__ == '__main__':
     unittest.main()
