@@ -1,6 +1,10 @@
 import numpy as np
 import pandas as pd
 
+from scipy import stats
+
+# TODO: "Overload" functions so that I can not redo work when calling t-value, p-values, etc. - https://stackoverflow.com/questions/7113032/overloaded-functions-in-python
+
 def get_standard_errors(reg, X, Y):
     '''
     http://reliawiki.org/index.php/Multiple_Linear_Regression_Analysis
@@ -34,9 +38,40 @@ def get_t_values(reg, X, Y):
     :return:
     '''
     B = np.append(reg.intercept_, reg.coef_)
-    rse = __get_rse(reg, X, Y)
+    standard_errors = get_standard_errors(reg, X, Y)
 
-    return pd.Series(data=(B / rse), index=['Intercept'] + X.columns.tolist())
+    return B / standard_errors
+
+
+def get_p_values(reg, X, Y):
+    '''
+    ISLR pg. 72?
+
+    :param reg:
+    :param X:
+    :param y:
+    :return:
+    '''
+    t_values = get_t_values(reg, X, Y)
+    n = Y.size
+    p_func = lambda t: stats.t.sf(np.abs(t), n - 1) * 2
+
+    return t_values.apply(p_func)
+
+
+def summary(reg, X, Y):
+    columns = ['Coef.', 'Std. Error', 't-value', 'p-value']
+    idx = ['Intercept'] + X.columns.tolist()
+    B = pd.Series(np.append(reg.intercept_, reg.coef_), idx)
+    s_errors = get_standard_errors(reg, X, Y)
+    t_values = get_t_values(reg, X, Y)
+    p_values = get_p_values(reg, X, Y)
+
+    summ_df = pd.concat([B, s_errors, t_values, p_values], axis=1, ignore_index=True)
+    summ_df.columns = columns
+    summ_df.index = idx
+
+    return summ_df
 
 
 def __get_rse(reg, X, Y):

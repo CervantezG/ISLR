@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8dacf3e7-7bfb-46d2-9f0f-a3db856cd196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sklearn_LR_plus/Advertising.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py" afterDir="false" />
+    <list default="true" id="8dacf3e7-7bfb-46d2-9f0f-a3db856cd196" name="Default Changelist" comment="Added .summary() method and a few simple tests.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" beforeDir="false" afterPath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py" beforeDir="false" afterPath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
-              <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
+              <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -29,11 +29,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="80" column="23" lean-forward="true" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+            <state relative-caret-position="425">
+              <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
                 <element signature="e#193#1826#0" />
+                <element signature="e#2023#3797#0" />
+                <element signature="e#2149#2992#0" />
+                <element signature="e#3727#5395#0" />
+                <element signature="e#5439#6837#0" />
+                <element signature="e#6288#6837#0" />
               </folding>
             </state>
           </provider>
@@ -114,6 +119,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/sklearn_LR_plus" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -134,8 +140,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_t_values.test_get_standard_errors_advertising_simple">
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi">
+    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -146,11 +152,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_standard_errors&quot;" />
+      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -161,11 +167,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising&quot;" />
+      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -176,11 +182,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi&quot;" />
+      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_simple" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -191,11 +197,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_simple&quot;" />
+      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_t_values.test_get_standard_errors_advertising_simple" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in sklearn_LR_plus_unittest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -206,17 +212,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_t_values.test_get_standard_errors_advertising_simple&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_t_values.test_get_standard_errors_advertising_simple" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_standard_errors" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_simple" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising" />
+        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" />
+        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" />
+        <item itemvalue="Python tests.pytest in sklearn_LR_plus_unittest.py" />
+        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" />
+        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple" />
       </list>
     </recent_temporary>
   </component>
@@ -234,43 +240,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors - 2019.07.05 at 12h 33m 12s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors" configurationId="tests" />
+    <history-entry file="pytest_in_sklearn_LR_plus_unittest_py - 2019.07.05 at 13h 56m 18s.xml">
+      <configuration name="pytest in sklearn_LR_plus_unittest.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 48m 49s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_p_values_test_get_p_values_advertising_simple - 2019.07.05 at 14h 09m 39s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 49m 31s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_p_values_test_get_p_values_advertising_simple - 2019.07.05 at 14h 10m 29s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_simple" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 50m 17s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_p_values_test_get_p_values_advertising_multi - 2019.07.05 at 14h 11m 32s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 50m 36s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_in_sklearn_LR_plus_unittest_py - 2019.07.05 at 14h 13m 16s.xml">
+      <configuration name="pytest in sklearn_LR_plus_unittest.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 50m 46s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_summary_advertising_simple - 2019.07.05 at 15h 15m 06s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 51m 25s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_summary_advertising_simple - 2019.07.05 at 15h 16m 33s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors_test_get_standard_errors_advertising_multi - 2019.07.05 at 12h 52m 15s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors.test_get_standard_errors_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_summary_advertising_simple - 2019.07.05 at 15h 19m 59s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_standard_errors - 2019.07.05 at 12h 54m 30s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_standard_errors" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 15h 23m 59s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestGet_t_values_test_get_standard_errors_advertising_simple - 2019.07.05 at 13h 05m 14s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_t_values.test_get_standard_errors_advertising_simple" configurationId="tests" />
+    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 15h 24m 56s.xml">
+      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -278,7 +283,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -287,6 +292,10 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added .summary() method and a few simple tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .summary() method and a few simple tests." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/Advertising.csv">
@@ -324,16 +333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/linear_model_stats/linear_model_stats.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/linear_model_stats/linear_model_stats_unittest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-257">
@@ -347,10 +346,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/linear_model_stats/linear_model_stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="61" column="11" lean-forward="true" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
-          <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
+          <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -359,11 +368,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="80" column="23" lean-forward="true" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+        <state relative-caret-position="425">
+          <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
             <element signature="e#193#1826#0" />
+            <element signature="e#2023#3797#0" />
+            <element signature="e#2149#2992#0" />
+            <element signature="e#3727#5395#0" />
+            <element signature="e#5439#6837#0" />
+            <element signature="e#6288#6837#0" />
           </folding>
         </state>
       </provider>
