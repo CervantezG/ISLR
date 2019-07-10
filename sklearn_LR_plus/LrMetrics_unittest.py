@@ -295,7 +295,7 @@ class TestGet_residuals_data(unittest.TestCase):
         expected.name = 'Residuals'
 
         lrm = lrp.LrMetrics(X, Y)
-        actual = lrm.get_residuals_data(X).drop('std')
+        actual = lrm.get_residuals_data().drop('std')
 
         pd.testing.assert_series_equal(actual, expected, check_less_precise=4)
 
@@ -312,6 +312,35 @@ class TestGet_residuals_data(unittest.TestCase):
         # actual.drop('f-stat', inplace=True)
         #
         # pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
+
+class TestGet_general_data(unittest.TestCase):
+    '''
+    This class tests sklearn_LR_plus.LrMetrics.get_general_data().
+    '''
+    def test_get_general_data_advertising_multi(self):
+        '''
+        Test .get_general_data() on multiple linear regression.
+        '''
+        df = pd.read_csv('Advertising.csv')
+
+        Y = df['sales']
+        X = df[['TV', 'radio', 'newspaper']]
+
+        lrm = lrp.LrMetrics(X, Y)
+
+        # Test general
+        expected = pd.Series(data=[1.686, 570.3, -99, 0.8972, -99],
+                             index=['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2'])
+        expected.name = 'General'
+
+        actual = lrm.get_general_data()
+
+        self.assertAlmostEqual(actual['f-stat'], expected['f-stat'], places=1)
+
+        expected.drop('f-stat', inplace=True)
+        actual.drop('f-stat', inplace=True)
+
+        pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
 
 
 if __name__ == '__main__':

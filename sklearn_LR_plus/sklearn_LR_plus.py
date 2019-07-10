@@ -31,17 +31,20 @@ class LrMetrics:
 
         # Set fields to None
         self.rss = None
-        self.rse = None
+        self.coef_rse = None
         self.standard_errors = None
         self.t_values = None
+        self.rse = None
+        self.tss = None
+        self.f_stat = None
 
 
-    def get_rse(self):
-        if self.rse is None:
-            self.rse = np.sqrt(
+    def get_coef_rse(self):
+        if self.coef_rse is None:
+            self.coef_rse = np.sqrt(
                 np.power((self.X @ self.B.reshape(self.X.shape[1], 1)) - np.array(pd.DataFrame(self.Y)), 2).sum() / (
                             self.Y.size - self.X.shape[1]))
-        return self.rse
+        return self.coef_rse
 
     def get_standard_errors(self):
         '''
@@ -53,7 +56,7 @@ class LrMetrics:
         :return:
         '''
         if self.standard_errors is None:
-            var = self.get_rse()**2
+            var = self.get_coef_rse()**2
 
             C = var * np.linalg.inv(self.X.T @ self.X)
             self.standard_errors = pd.Series(data=np.sqrt(np.diag(C)), index=(['Intercept'] + self.features))
@@ -100,12 +103,62 @@ class LrMetrics:
 
         return coef_df
 
-    def get_residuals_data(self, X_TEST):
+    def get_residuals_data(self):
         residuals = pd.Series(self.Y - self.reg.predict(self.X[:, 1:])).describe()
         residuals.name = 'Residuals'
         return residuals.drop(labels=['count', 'mean'])
 
+    # TODO: Add p-value and adjusted R^2 to __general.  Currently they have placeholders of -99.
+    def get_general_data(self):
+        '''
 
+        :param reg:
+        :param X:
+        :param Y:
+        :return:
+        '''
+        idx = ['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2']
+
+        values = list()
+        values.append(self.get_rse())
+        values.append(self.get_f_stat())
+        values.append(-99)
+        values.append(self.reg.score(self.X[:, 1:], self.Y))
+        values.append(-99)
+
+        se = pd.Series(data=values, index=idx)
+        se.name = 'General'
+        return se
+
+
+    def get_tss(self):
+        if self.tss is None:
+            self.tss = np.power(self.Y - self.Y.mean(), 2).sum()
+        return self.tss
+
+
+    def get_rss(self):
+        if self.rss is None:
+            self.rss = np.power(self.reg.predict(self.X[:, 1:]) - self.Y, 2).sum()
+        return self.rss
+
+
+    def get_rse(self):
+        if self.rse is None:
+            self.rse = np.sqrt(self.get_rss() / (self.Y.size - self.p - 1))
+        return self.rse
+
+
+    def get_f_stat(self):
+        if self.f_stat is None:
+            self.f_stat = ((self.get_tss() - self.get_rss()) / self.p) / (self.get_rss() / (self.n - self.p - 1))
+        return self.f_stat
+
+
+    # tss = np.power(Y - Y.mean(), 2).sum()
+    # rss = np.power(reg.predict(X) - Y, 2).sum()
+    #
+    # return ((tss - rss) / p) / (rss / (n - p - 1))
 
 
 
@@ -138,19 +191,19 @@ class MixedSelection:
 ######################################################################
 
 
-def summary(reg, X, Y):
-    summary = dict()
-
-    # Get information on hypothesis tests ran against individual coefficients
-    summary['coef_tests'] = __coef_tests(reg, X, Y)
-
-    # Get residuals distribution information
-    summary['residuals'] = __residuals_data(reg, X, Y)
-
-    # Get general information
-    summary['general'] = __general(reg, X, Y)
-
-    return summary
+# def summary(reg, X, Y):
+#     summary = dict()
+#
+#     # Get information on hypothesis tests ran against individual coefficients
+#     summary['coef_tests'] = __coef_tests(reg, X, Y)
+#
+#     # Get residuals distribution information
+#     summary['residuals'] = __residuals_data(reg, X, Y)
+#
+#     # Get general information
+#     summary['general'] = __general(reg, X, Y)
+#
+#     return summary
 
 # TODO: Add p-value and adjusted R^2 to __general.  Currently they have placeholders of -99.
 def __general(reg, X, Y):
