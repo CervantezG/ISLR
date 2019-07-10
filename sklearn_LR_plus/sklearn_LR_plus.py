@@ -161,14 +161,9 @@ class LrMetrics:
     # return ((tss - rss) / p) / (rss / (n - p - 1))
 
 
-
-############################################################################
-
-
-
 class MixedSelection:
     def __int__(self, X, Y):
-        self.X = X;
+        self.X = X
         self.Y = Y
 
 

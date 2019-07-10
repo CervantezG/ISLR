@@ -7,41 +7,13 @@ import sklearn_LR_plus as lrp
 
 from sklearn.linear_model import LinearRegression
 
-class TestContructor(unittest.TestCase):
+
+class TestSimple_linear_regressions(unittest.TestCase):
     '''
-    This class tests the sklearn_LR_plus.LrMetrics constructor.
-    '''
-
-    def testConstructor(self):
-        '''
-        Test that results are the same if initializing using a constructor without reg and with reg.
-        '''
-        standard_errors = ['TV', 'radio', 'newspaper']
-
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-
-        for col in standard_errors:
-            X = pd.DataFrame(df[col])
-
-            reg = LinearRegression()
-            reg.fit(X, Y)
-            lrm1 = lrp.LrMetrics(X, Y, reg)
-
-            lrm2 = lrp.LrMetrics(X, Y)
-
-            self.assertEqual(lrm1.reg.score(X, Y), lrm2.reg.score(X, Y))
-            self.assertEqual(lrm1.reg.coef_, lrm2.reg.coef_)
-            self.assertEqual(lrm1.reg.intercept_, lrm2.reg.intercept_)
-
-
-class TestGet_standard_errors(unittest.TestCase):
-    '''
-    This class tests sklearn_LR_plus.get_standard_errors().
+    This class tests sklearn_LR_plus.MixedSelection.simple_linear_regressions().
     '''
 
-    def test_get_standard_errors_advertising_simple(self):
+    def test_simple_linear_regressions_advertising_simple(self):
         '''
         Test the standard error on simple linear regression using Advertising data and ISLR pg. 68, 72
         '''
@@ -49,26 +21,31 @@ class TestGet_standard_errors(unittest.TestCase):
                            'radio' : np.array([0.563, 0.020]),
                            'newspaper' : np.array([0.621, 0.017])}
 
-        places = 4
+        t_values = {'TV' : np.array([15.36, 17.67]),
+                    'radio' : np.array([16.54, 9.92]),
+                    'newspaper' : np.array([19.88, 3.30])}
 
         df = pd.read_csv('Advertising.csv')
 
         Y = df['sales']
+        X = df[['TV', 'radio', 'newspaper']]
 
-        for col in standard_errors:
-            X = pd.DataFrame(df[col])
+        # Why does this not work!
+        simp_LRs = lrp.MixedSelection(X, Y)
+
+        for lr in simp_LRs:
+            col = lr.features[0]
 
             expected = pd.Series(data=standard_errors[col],
                                  index=['Intercept', col])
+            actual = lr.get_t_values()
 
-            lrm = lrp.LrMetrics(X, Y)
+            pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
 
-            actual = lrm.get_standard_errors()
 
-            np.testing.assert_almost_equal(actual.values, expected.values, decimal=places)
-            self.assertListEqual(actual.index.tolist(), expected.index.tolist())
 
-            places = 3
+
+
 
     def test_get_standard_errors_advertising_multi(self):
         '''
