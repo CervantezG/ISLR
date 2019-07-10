@@ -1,11 +1,62 @@
 import numpy as np
 import pandas as pd
 
+from sklearn.linear_model import LinearRegression
 from scipy import stats
 
 # TODO: "Overload" functions so that I can not redo work when calling t-value, p-values, etc. - https://stackoverflow.com/questions/7113032/overloaded-functions-in-python
 # TODO: Add plots.  I believe I have some of the plots to add on my hand written notes.
 # TODO: Add mixed selection automation (ISLR pg. 79). POTENTIAL_OPTIONS: Fix skew response, Fix skew predictors, lambda new columns, collinearity drop, collinearity combine
+
+class LrMetrics:
+    def __init__(self, X, Y, reg=None):
+        # If reg = None then run create a scikit learn linear model
+        if reg == None:
+            reg = LinearRegression()
+            reg.fit(X, Y)
+
+        self.reg = reg;
+
+        # Get sub-fields from data
+        self.n = Y.size;
+        self.features = X.columns;
+        self.p = X.columns.size
+
+        # Set X and Y to numpy arrays
+        self.X = np.concatenate([np.ones(Y.size).reshape(Y.size, 1), np.array(X)], axis=1)
+        self.Y = np.array(pd.DataFrame(Y))
+
+        # Create B where the first value is the intercept and the following values are the coefficients
+        self.B = np.append(reg.intercept_, reg.coef_).reshape(self.X.shape[1], 1)
+
+        # Set fields to None
+        self.rss = None
+        self.rse = None
+
+
+class MixedSelection:
+    def __int__(self, X, Y):
+        self.X = X;
+        self.Y = Y
+
+
+
+
+    def simple_linear_regressions(self, sort=True):
+        simp_lrs = list(None * self.Y.size)
+
+        for feat in self.X.columns:
+
+
+
+        # If sort=True then sort values in list
+        if sort:
+            pass
+
+        return -99
+
+
+
 
 def get_standard_errors(reg, X, Y):
     '''
