@@ -19,19 +19,98 @@ class LrMetrics:
 
         # Get sub-fields from data
         self.n = Y.size;
-        self.features = X.columns;
+        self.features = X.columns.tolist();
         self.p = X.columns.size
 
         # Set X and Y to numpy arrays
         self.X = np.concatenate([np.ones(Y.size).reshape(Y.size, 1), np.array(X)], axis=1)
-        self.Y = np.array(pd.DataFrame(Y))
+        self.Y = Y.values
 
         # Create B where the first value is the intercept and the following values are the coefficients
-        self.B = np.append(reg.intercept_, reg.coef_).reshape(self.X.shape[1], 1)
+        self.B = np.append(self.reg.intercept_, self.reg.coef_)
 
         # Set fields to None
         self.rss = None
         self.rse = None
+        self.standard_errors = None
+        self.t_values = None
+
+
+    def get_rse(self):
+        if self.rse is None:
+            self.rse = np.sqrt(
+                np.power((self.X @ self.B.reshape(self.X.shape[1], 1)) - np.array(pd.DataFrame(self.Y)), 2).sum() / (
+                            self.Y.size - self.X.shape[1]))
+        return self.rse
+
+    def get_standard_errors(self):
+        '''
+        http://reliawiki.org/index.php/Multiple_Linear_Regression_Analysis
+    
+        :param reg:
+        :param X:
+        :param Y:
+        :return:
+        '''
+        if self.standard_errors is None:
+            var = self.get_rse()**2
+
+            C = var * np.linalg.inv(self.X.T @ self.X)
+            self.standard_errors = pd.Series(data=np.sqrt(np.diag(C)), index=(['Intercept'] + self.features))
+        return self.standard_errors
+
+    def get_t_values(self):
+        '''
+        ISLR pg. 72?
+
+        :param reg:
+        :param X:
+        :param y:
+        :return:
+        '''
+        if self.t_values is None:
+            self.t_values = self.B / self.get_standard_errors()
+        return self.t_values
+
+    def get_p_values(self):
+        '''
+        ISLR pg. 72?
+
+        :param reg:
+        :param X:
+        :param y:
+        :return:
+        '''
+        # t_values = get_t_values(reg, X, Y)
+        p_func = lambda t: stats.t.sf(np.abs(t), self.n - 1) * 2
+
+        return self.get_t_values().apply(p_func)
+
+    def get_coef_tests(self):
+        columns = ['Coef.', 'Std. Error', 't-value', 'p-value']
+        idx = ['Intercept'] + self.features
+        se_B = pd.Series(self.B, index=idx)
+        s_errors = self.get_standard_errors()
+        t_values = self.get_t_values()
+        p_values = self.get_p_values()
+
+        coef_df = pd.concat([se_B, s_errors, t_values, p_values], axis=1, ignore_index=True)
+        coef_df.columns = columns
+        coef_df.index = idx
+
+        return coef_df
+
+    def get_residuals_data(self, X_TEST):
+        residuals = pd.Series(self.Y - self.reg.predict(self.X[:, 1:])).describe()
+        residuals.name = 'Residuals'
+        return residuals.drop(labels=['count', 'mean'])
+
+
+
+
+
+############################################################################
+
 
 
 class MixedSelection:
@@ -40,76 +119,23 @@ class MixedSelection:
         self.Y = Y
 
 
-
-
     def simple_linear_regressions(self, sort=True):
         simp_lrs = list(None * self.Y.size)
 
+        # Create simple linear regressions for all columns in self.X
         for feat in self.X.columns:
-
-
+            simp_lrs.append(LrMetrics(self.X[feat], self.Y))
 
         # If sort=True then sort values in list
+
         if sort:
-            pass
+            rss_f = lambda x: x.rss
+            simp_lrs.sort(key=rss_f)
 
-        return -99
-
-
-
-
-def get_standard_errors(reg, X, Y):
-    '''
-    http://reliawiki.org/index.php/Multiple_Linear_Regression_Analysis
-
-    :param reg:
-    :param X:
-    :param Y:
-    :return:
-    '''
-    # X_arr = pd.concat( [pd.DataFrame({'intercept' : np.ones(Y.size)}), X], axis=1, ignore_index=True )
-    X_arr = np.concatenate([np.ones(Y.size).reshape(Y.size, 1), np.array(X)], axis=1)
-    # X_arr = np.array(X_arr)
-    Y_arr = np.array(pd.DataFrame(Y))
-
-    B = np.append(reg.intercept_, reg.coef_).reshape(X_arr.shape[1], 1)
-
-    rse = np.sqrt(np.power((X_arr @ B) - Y_arr, 2).sum() / (Y_arr.size - X_arr.shape[1]))
-    var = rse**2
-
-    C = var * np.linalg.inv(X_arr.T @ X_arr)
-    return pd.Series(data=np.sqrt(np.diag(C)), index=(['Intercept'] + X.columns.tolist()))
+        return simp_lrs
 
 
-def get_t_values(reg, X, Y):
-    '''
-    ISLR pg. 72?
-
-    :param reg:
-    :param X:
-    :param y:
-    :return:
-    '''
-    B = np.append(reg.intercept_, reg.coef_)
-    standard_errors = get_standard_errors(reg, X, Y)
-
-    return B / standard_errors
-
-
-def get_p_values(reg, X, Y):
-    '''
-    ISLR pg. 72?
-
-    :param reg:
-    :param X:
-    :param y:
-    :return:
-    '''
-    t_values = get_t_values(reg, X, Y)
-    n = Y.size
-    p_func = lambda t: stats.t.sf(np.abs(t), n - 1) * 2
-
-    return t_values.apply(p_func)
+######################################################################
 
 
 def summary(reg, X, Y):
@@ -164,26 +190,6 @@ def __f_stat(reg, X, Y):
     rss = np.power(reg.predict(X) - Y, 2).sum()
 
     return ((tss - rss) / p) / (rss / (n - p - 1))
-
-
-def __coef_tests(reg, X, Y):
-    columns = ['Coef.', 'Std. Error', 't-value', 'p-value']
-    idx = ['Intercept'] + X.columns.tolist()
-    B = pd.Series(np.append(reg.intercept_, reg.coef_), idx)
-    s_errors = get_standard_errors(reg, X, Y)
-    t_values = get_t_values(reg, X, Y)
-    p_values = get_p_values(reg, X, Y)
-
-    summ_df = pd.concat([B, s_errors, t_values, p_values], axis=1, ignore_index=True)
-    summ_df.columns = columns
-    summ_df.index = idx
-
-    return summ_df
-
-def __residuals_data(reg, X, Y):
-    residuals = (Y - reg.predict(X)).describe()
-    residuals.name = 'Residuals'
-    return residuals.drop(labels=['count', 'mean'])
 
 
 def __get_rse(reg, X, Y):

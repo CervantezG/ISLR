@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dacf3e7-7bfb-46d2-9f0f-a3db856cd196" name="Default Changelist" comment="Added .summary() method and a few simple tests.">
-      <change afterPath="$PROJECT_DIR$/sklearn_LR_plus/SANDBOX_automation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sklearn_LR_plus/LrMetrics_unittest.py" beforeDir="false" afterPath="$PROJECT_DIR$/sklearn_LR_plus/LrMetrics_unittest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" beforeDir="false" afterPath="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="107">
+              <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -26,14 +26,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/LrMetrics_unittest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2397">
-              <caret line="141" column="25" lean-forward="true" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
+            <state relative-caret-position="316">
+              <caret line="286" column="23" lean-forward="true" selection-start-line="286" selection-start-column="23" selection-end-line="286" selection-end-column="23" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#5440#7907#0" />
+                <element signature="e#1026#2763#0" />
+                <element signature="e#334#1250#0" />
+                <element signature="e#2113#2763#0" />
+                <element signature="e#2779#4404#0" />
+                <element signature="e#2905#3748#0" />
+                <element signature="e#3775#4404#0" />
+                <element signature="e#4426#6123#0" />
+                <element signature="e#4552#5414#0" />
               </folding>
             </state>
           </provider>
@@ -61,9 +67,22 @@
     <findStrings>
       <find>Y_mat</find>
       <find>rse</find>
+      <find>X</find>
+      <find>summ_dfs</find>
+      <find>.get_residuals()</find>
+      <find>self.B</find>
+      <find>self.X</find>
+      <find>get_res</find>
+      <find>self.rse</find>
+      <find>self.rss</find>
+      <find>self.Y</find>
     </findStrings>
     <replaceStrings>
       <replace>Y_arr</replace>
+      <replace>self.Y</replace>
+      <replace>coef_df</replace>
+      <replace>.get_residuals_data()</replace>
+      <replace>self.X</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -75,6 +94,7 @@
         <option value="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py" />
         <option value="$PROJECT_DIR$/sklearn_LR_plus/SANDBOX_automation.py" />
         <option value="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" />
+        <option value="$PROJECT_DIR$/sklearn_LR_plus/LrMetrics_unittest.py" />
       </list>
     </option>
   </component>
@@ -131,8 +151,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in sklearn_LR_plus_unittest.py">
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for LrMetrics_unittest.TestGet_residuals_data">
+    <configuration name="sklearn_LR_plus" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ISLR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sklearn_LR_plus" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -143,11 +184,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi&quot;" />
+      <option name="_new_target" value="&quot;LrMetrics_unittest.TestGet_residuals_data&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -158,11 +199,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi&quot;" />
+      <option name="_new_target" value="&quot;LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for LrMetrics_unittest.TestGet_standard_errors" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -173,26 +214,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple&quot;" />
+      <option name="_new_target" value="&quot;LrMetrics_unittest.TestGet_standard_errors&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in linear_model_stats_unittest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="ISLR" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/linear_model_stats" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/linear_model_stats/linear_model_stats_unittest.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in sklearn_LR_plus_unittest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in LrMetrics_unittest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -203,17 +229,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/sklearn_LR_plus/LrMetrics_unittest.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in sklearn_LR_plus_unittest.py" />
-        <item itemvalue="Python tests.pytest in linear_model_stats_unittest.py" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" />
+        <item itemvalue="Python tests.pytest for LrMetrics_unittest.TestGet_residuals_data" />
+        <item itemvalue="Python tests.pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" />
+        <item itemvalue="Python.sklearn_LR_plus" />
+        <item itemvalue="Python tests.pytest for LrMetrics_unittest.TestGet_standard_errors" />
+        <item itemvalue="Python tests.pytest in LrMetrics_unittest.py" />
       </list>
     </recent_temporary>
   </component>
@@ -231,55 +257,64 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 03m 50s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 10m 13s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 04m 39s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 10m 46s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 06m 18s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 14m 48s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 06m 53s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_standard_errors - 2019.07.10 at 16h 19m 37s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_standard_errors" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 07m 24s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 19m 50s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 08m 32s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 19m 54s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 09m 02s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 21m 15s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 10m 21s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 22m 44s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_linear_model_stats_unittest_py - 2019.07.05 at 17h 10m 33s.xml">
-      <configuration name="pytest in linear_model_stats_unittest.py" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data_test_get_residuals_data_advertising_multi - 2019.07.10 at 16h 22m 52s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data.test_get_residuals_data_advertising_multi" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_sklearn_LR_plus_unittest_py - 2019.07.05 at 17h 10m 53s.xml">
-      <configuration name="pytest in sklearn_LR_plus_unittest.py" configurationId="tests" />
+    <history-entry file="pytest_for_LrMetrics_unittest_TestGet_residuals_data - 2019.07.10 at 16h 23m 29s.xml">
+      <configuration name="pytest for LrMetrics_unittest.TestGet_residuals_data" configurationId="tests" />
     </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19915701" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19915701" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -348,13 +383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/SANDBOX_automation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus_unittest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2397">
@@ -366,12 +394,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/_pytest/runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/pluggy/callers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="207" selection-start-line="207" selection-end-line="207" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/_pytest/unittest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/pluggy/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/pandas/core/series.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="989">
+          <caret line="275" column="18" lean-forward="true" selection-start-line="275" selection-start-column="18" selection-end-line="275" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/pandas/core/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="1584" selection-start-line="1584" selection-end-line="1584" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/SANDBOX_automation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/sklearn/linear_model/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="240" selection-start-line="240" selection-end-line="240" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="604" selection-start-line="604" selection-end-line="604" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/LrMetrics_unittest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="286" column="23" lean-forward="true" selection-start-line="286" selection-start-column="23" selection-end-line="286" selection-end-column="23" />
+          <folding>
+            <element signature="e#1026#2763#0" />
+            <element signature="e#334#1250#0" />
+            <element signature="e#2113#2763#0" />
+            <element signature="e#2779#4404#0" />
+            <element signature="e#2905#3748#0" />
+            <element signature="e#3775#4404#0" />
+            <element signature="e#4426#6123#0" />
+            <element signature="e#4552#5414#0" />
           </folding>
         </state>
       </provider>
