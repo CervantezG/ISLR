@@ -30,7 +30,7 @@ class LrMetrics:
         self.B = np.append(self.reg.intercept_, self.reg.coef_)
 
         # Set fields to None
-        self.rss = None
+        self._rss = None
         self.coef_rse = None
         self.standard_errors = None
         self.t_values = None
@@ -49,7 +49,7 @@ class LrMetrics:
     def get_standard_errors(self):
         '''
         http://reliawiki.org/index.php/Multiple_Linear_Regression_Analysis
-    
+
         :param reg:
         :param X:
         :param Y:
@@ -138,9 +138,9 @@ class LrMetrics:
 
 
     def get_rss(self):
-        if self.rss is None:
-            self.rss = np.power(self.reg.predict(self.X[:, 1:]) - self.Y, 2).sum()
-        return self.rss
+        if self._rss is None:
+            self._rss = np.power(self.reg.predict(self.X[:, 1:]) - self.Y, 2).sum()
+        return self._rss
 
 
     def get_rse(self):
@@ -154,103 +154,64 @@ class LrMetrics:
             self.f_stat = ((self.get_tss() - self.get_rss()) / self.p) / (self.get_rss() / (self.n - self.p - 1))
         return self.f_stat
 
+    def get_high_p_features(self, q=0.05):
+        '''
 
-    # tss = np.power(Y - Y.mean(), 2).sum()
-    # rss = np.power(reg.predict(X) - Y, 2).sum()
-    #
-    # return ((tss - rss) / p) / (rss / (n - p - 1))
+        :param q:
+        :return:
+        '''
+        return self.get_p_values().index[self.get_p_values() > q].tolist()
 
 
 class MixedSelection:
-    def __int__(self, X, Y):
+    def __init__(self, X, Y):
         self.X = X
         self.Y = Y
 
 
     def simple_linear_regressions(self, sort=True):
-        simp_lrs = list(None * self.Y.size)
+        simp_lrs = list()
 
         # Create simple linear regressions for all columns in self.X
         for feat in self.X.columns:
-            simp_lrs.append(LrMetrics(self.X[feat], self.Y))
+            simp_lrs.append(LrMetrics(pd.DataFrame(self.X[feat]), self.Y))
 
         # If sort=True then sort values in list
-
         if sort:
-            rss_f = lambda x: x.rss
+            rss_f = lambda x: x.get_rss()
             simp_lrs.sort(key=rss_f)
 
         return simp_lrs
+
+    def mixed_selection(self, q=0.05):
+        simp_LRs = self.simple_linear_regressions()
+
+        features = list()
+
+        for i in range(len(simp_LRs)):
+            if len(simp_LRs[i].features) > 1:
+                raise RuntimeError(
+                    'Linear Regressions had more than a single feature when they were supposed to be simple.')
+            feature = simp_LRs[i].features[0]
+            features.append(feature)
+
+            temp_X = self.X[features]
+            multi_reg = LrMetrics(temp_X, self.Y)
+            for feat in multi_reg.get_high_p_features(q):
+                features.remove(feat)
+
+        final_X = self.X[features]
+        return LrMetrics(final_X, self.Y)
+
+
 
 
 ######################################################################
 
 
-# def summary(reg, X, Y):
-#     summary = dict()
-#
-#     # Get information on hypothesis tests ran against individual coefficients
-#     summary['coef_tests'] = __coef_tests(reg, X, Y)
-#
-#     # Get residuals distribution information
-#     summary['residuals'] = __residuals_data(reg, X, Y)
-#
-#     # Get general information
-#     summary['general'] = __general(reg, X, Y)
-#
-#     return summary
-
-# TODO: Add p-value and adjusted R^2 to __general.  Currently they have placeholders of -99.
-def __general(reg, X, Y):
-    '''
-
-    :param reg:
-    :param X:
-    :param Y:
-    :return:
-    '''
-    idx = ['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2']
-
-    values = list()
-    values.append(__get_rse(reg, X, Y))
-    values.append(__f_stat(reg, X, Y))
-    values.append(-99)
-    values.append(reg.score(X, Y))
-    values.append(-99)
-
-    se = pd.Series(data=values, index=idx)
-    se.name = 'General'
-    return se
 
 
-def __f_stat(reg, X, Y):
-    '''
-    ISLR pg. 75
 
-    :param reg:
-    :param X:
-    :param Y:
-    :return:
-    '''
-    n = Y.size
-    p = X.columns.size
-    tss = np.power(Y - Y.mean(), 2).sum()
-    rss = np.power(reg.predict(X) - Y, 2).sum()
-
-    return ((tss - rss) / p) / (rss / (n - p - 1))
-
-
-def __get_rse(reg, X, Y):
-    '''
-    ISLR pg. 68?
-
-    :param reg:
-    :param X:
-    :param Y:
-    :return:
-    '''
-    rss = np.power( reg.predict(X) - Y, 2).sum()
-    return np.sqrt( rss / (Y.size - X.columns.size - 1))
 
 
 

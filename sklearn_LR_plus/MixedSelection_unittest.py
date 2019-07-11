@@ -2,6 +2,7 @@ import unittest
 
 import numpy as np
 import pandas as pd
+import itertools
 
 import sklearn_LR_plus as lrp
 
@@ -15,7 +16,7 @@ class TestSimple_linear_regressions(unittest.TestCase):
 
     def test_simple_linear_regressions_advertising_simple(self):
         '''
-        Test the standard error on simple linear regression using Advertising data and ISLR pg. 68, 72
+        Test simple_linear_regressions() using Advertising data and ISLR pg. 68, 72
         '''
         standard_errors = {'TV' : np.array([0.4578, 0.0027]),
                            'radio' : np.array([0.563, 0.020]),
@@ -31,294 +32,75 @@ class TestSimple_linear_regressions(unittest.TestCase):
         X = df[['TV', 'radio', 'newspaper']]
 
         # Why does this not work!
-        simp_LRs = lrp.MixedSelection(X, Y)
+        ms = lrp.MixedSelection(X, Y)
+        simp_LRs = ms.simple_linear_regressions()
 
         for lr in simp_LRs:
             col = lr.features[0]
 
             expected = pd.Series(data=standard_errors[col],
                                  index=['Intercept', col])
-            actual = lr.get_t_values()
+            actual = lr.get_standard_errors()
 
-            pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
-
-
-
-
-
-
-    def test_get_standard_errors_advertising_multi(self):
-        '''
-        Test the standard error using Advertising data, r summary, and ISLR pg. 74
-        '''
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-        X = df[['TV', 'radio', 'newspaper']]
-
-        expected = pd.Series(data=np.array([0.311908, 0.001395, 0.008611, 0.005871]),
-                             index=['Intercept', 'TV', 'radio', 'newspaper'])
-
-        lrm = lrp.LrMetrics(X, Y)
-
-        actual = lrm.get_standard_errors()
-
-        np.testing.assert_almost_equal(actual.values, expected.values, decimal=6)
-        self.assertListEqual(actual.index.tolist(), expected.index.tolist())
-
-
-class TestGet_t_values(unittest.TestCase):
-    '''
-    This class tests sklearn_LR_plus.LrMetrics.get_t_values().
-    '''
-
-    def test_get_t_values_advertising_simple(self):
-        '''
-        Test the t values on simple linear regression using Advertising data and ISLR pg. 68, 72
-        '''
-        t_values = {'TV' : np.array([15.36, 17.67]),
-                    'radio' : np.array([16.54, 9.92]),
-                    'newspaper' : np.array([19.88, 3.30])}
-
-        places = 2
-
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-
-        for col in t_values:
-            X = pd.DataFrame(df[col])
+            pd.testing.assert_series_equal(actual.round(3), expected.round(3))
 
             expected = pd.Series(data=t_values[col],
                                  index=['Intercept', col])
+            actual = lr.get_t_values()
 
-            lrm = lrp.LrMetrics(X, Y)
+            pd.testing.assert_series_equal(actual.round(2), expected.round(2))
 
-            actual = lrm.get_t_values()
+        for i in range(1, len(simp_LRs)):
+            self.assertTrue(simp_LRs[i - 1].get_rss() <= simp_LRs[i].get_rss())
 
-            np.testing.assert_almost_equal(actual.values, expected.values, decimal=places)
-            self.assertListEqual(actual.index.tolist(), expected.index.tolist())
 
-    def test_get_t_values_advertising_multi(self):
+class TestMixed_selection(unittest.TestCase):
+    '''
+    This class tests sklearn_LR_plus.MixedSelection.mixed_selection().
+    '''
+    def test_mixed_selection_advertising_simple(self):
         '''
-        Test the t values using Advertising data, r summary, and ISLR pg. 74
+        Test  on simple linear regression using Advertising data and ISLR pg. 68, 72
         '''
         df = pd.read_csv('Advertising.csv')
 
         Y = df['sales']
         X = df[['TV', 'radio', 'newspaper']]
 
-        expected = pd.Series(data=np.array([9.422, 32.809, 21.893, -0.177]),
-                             index=['Intercept', 'TV', 'radio', 'newspaper'])
+        # Why does this not work!
+        ms = lrp.MixedSelection(X, Y)
+        lrm = ms.mixed_selection()
 
-        lrm = lrp.LrMetrics(X, Y)
+        expected = ['TV', 'radio']
+        actual = lrm.features
+        actual.sort()
 
-        actual = lrm.get_t_values()
+        self.assertListEqual(expected, actual)
 
-        np.testing.assert_almost_equal(actual.values, expected.values, decimal=3)
-        self.assertListEqual(actual.index.tolist(), expected.index.tolist())
 
-#
-class TestGet_p_values(unittest.TestCase):
-    '''
-    This class tests sklearn_LR_plus.LrMetrics.get_p_values().
-    '''
-
-    def test_get_p_values_advertising_simple(self):
+    def test_mixed_selection_advertising_permutations(self):
         '''
-        Test the p values on simple linear regression using Advertising data and ISLR pg. 68, 72
+        Test mixed selection using Advertising data for all permutations on the order of columns and ISLR pg. 68, 72
+        Thinking about this, this should be overkill becuase the simple linear regressions should be sorted by rss so
+        it ends up being much less of a test of .mixed_selection().
         '''
-        p_values = {'TV' : np.array([0.000000, 0.000000]),
-                    'radio' : np.array([0.000000, 0.000000]),
-                    'newspaper' : np.array([0.000000, 0.00115])}
-
-        places = 5
 
         df = pd.read_csv('Advertising.csv')
 
         Y = df['sales']
 
-        for col in p_values:
-            X = pd.DataFrame(df[col])
+        for cols in itertools.permutations(['TV', 'radio', 'newspaper']):
+            X = df[list(cols)]
 
-            reg = LinearRegression()
-            reg.fit(X, Y)
+            # Why does this not work!
+            ms = lrp.MixedSelection(X, Y)
+            lrm = ms.mixed_selection()
 
-            expected = pd.Series(data=p_values[col],
-                                 index=['Intercept', col])
+            expected = ['TV', 'radio']
+            actual = lrm.features
+            actual.sort()
 
-            lrm = lrp.LrMetrics(X, Y)
-            actual = lrm.get_p_values()
-
-            np.testing.assert_almost_equal(actual.values, expected.values, decimal=places)
-            self.assertListEqual(actual.index.tolist(), expected.index.tolist())
-
-    def test_get_p_values_advertising_multi(self):
-        '''
-        Test the p values using Advertising data, r summary, and ISLR pg. 74
-        '''
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-        X = df[['TV', 'radio', 'newspaper']]
-
-        expected = pd.Series(data=np.array([0.0, 0.0, 0.0, 0.86]),
-                             index=['Intercept', 'TV', 'radio', 'newspaper'])
-        lrm = lrp.LrMetrics(X, Y)
-        actual = lrm.get_p_values()
-
-        np.testing.assert_almost_equal(actual.values, expected.values, decimal=2)
-        self.assertListEqual(actual.index.tolist(), expected.index.tolist())
-
-
-class TestGet_coef_tests(unittest.TestCase):
-    '''
-    This class tests sklearn_LR_plus.LrMetrics.get_coef_tests().
-    '''
-    def test_get_coef_tests_advertising_simple(self):
-        '''
-        Test .get_coef_tests() on simple linear regression.
-        '''
-        columns = ['TV', 'radio', 'newspaper']
-
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-
-        for col in columns:
-            X = pd.DataFrame(df[col])
-
-            lrm = lrp.LrMetrics(X, Y)
-            coef_df = lrm.get_coef_tests()
-
-            actual = coef_df.shape
-            expected = [2, 4]
-
-            self.assertListEqual(list(actual), expected)
-
-            # All p-values are essentially zero
-            actual = coef_df['p-value'].sum()
-            expected = 0.00
-
-            self.assertAlmostEqual(actual, expected, places=2)
-
-    def test_get_coef_tests_advertising_multi(self):
-        '''
-        Test .get_coef_tests() on multiple linear regression.
-        '''
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-        X = df[['TV', 'radio', 'newspaper']]
-
-        lrm = lrp.LrMetrics(X, Y)
-
-        # Test coef_tests
-        coef_df = lrm.get_coef_tests()
-
-        actual = coef_df.shape
-        expected = [4, 4]
-
-        self.assertListEqual(list(actual), expected)
-
-        # All p-values are essentially zero except newspaper which is ~ 0.85
-        actual = coef_df['p-value'].sum()
-        expected_high = 0.90
-        expected_low = 0.80
-        self.assertTrue(actual < expected_high)
-        self.assertTrue(actual > expected_low)
-
-        # # Test residuals
-        # expected = pd.Series(data=[-8.8277, -0.8908, 0.2418, 1.1893, 2.8292],
-        #                      index=['min', '25%', '50%', '75%', 'max'])
-        # expected.name = 'Residuals'
-        #
-        # actual = summary['residuals'].drop('std')
-        #
-        # pd.testing.assert_series_equal(actual, expected, check_less_precise=4)
-        #
-        # # Test general
-        # expected = pd.Series(data=[1.686, 570.3, -99, 0.8972, -99],
-        #                      index=['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2'])
-        # expected.name = 'General'
-        #
-        # actual = summary['general']
-        #
-        # self.assertAlmostEqual(actual['f-stat'], expected['f-stat'], places=1)
-        #
-        # expected.drop('f-stat', inplace=True)
-        # actual.drop('f-stat', inplace=True)
-        #
-        # pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
-
-class TestGet_residuals_data(unittest.TestCase):
-    '''
-    This class tests sklearn_LR_plus.LrMetrics.get_residuals_data().
-    '''
-    def test_get_residuals_data_advertising_multi(self):
-        '''
-        Test .get_residuals_data() on multiple linear regression.
-        '''
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-        X = df[['TV', 'radio', 'newspaper']]
-
-        lrm = lrp.LrMetrics(X, Y)
-
-        # Test residuals
-        expected = pd.Series(data=[-8.8277, -0.8908, 0.2418, 1.1893, 2.8292],
-                             index=['min', '25%', '50%', '75%', 'max'])
-        expected.name = 'Residuals'
-
-        lrm = lrp.LrMetrics(X, Y)
-        actual = lrm.get_residuals_data().drop('std')
-
-        pd.testing.assert_series_equal(actual, expected, check_less_precise=4)
-
-        # # Test general
-        # expected = pd.Series(data=[1.686, 570.3, -99, 0.8972, -99],
-        #                      index=['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2'])
-        # expected.name = 'General'
-        #
-        # actual = summary['general']
-        #
-        # self.assertAlmostEqual(actual['f-stat'], expected['f-stat'], places=1)
-        #
-        # expected.drop('f-stat', inplace=True)
-        # actual.drop('f-stat', inplace=True)
-        #
-        # pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
-
-class TestGet_general_data(unittest.TestCase):
-    '''
-    This class tests sklearn_LR_plus.LrMetrics.get_general_data().
-    '''
-    def test_get_general_data_advertising_multi(self):
-        '''
-        Test .get_general_data() on multiple linear regression.
-        '''
-        df = pd.read_csv('Advertising.csv')
-
-        Y = df['sales']
-        X = df[['TV', 'radio', 'newspaper']]
-
-        lrm = lrp.LrMetrics(X, Y)
-
-        # Test general
-        expected = pd.Series(data=[1.686, 570.3, -99, 0.8972, -99],
-                             index=['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2'])
-        expected.name = 'General'
-
-        actual = lrm.get_general_data()
-
-        self.assertAlmostEqual(actual['f-stat'], expected['f-stat'], places=1)
-
-        expected.drop('f-stat', inplace=True)
-        actual.drop('f-stat', inplace=True)
-
-        pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
-
+            self.assertListEqual(expected, actual)
 
 if __name__ == '__main__':
     unittest.main()

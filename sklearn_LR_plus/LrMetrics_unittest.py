@@ -251,28 +251,6 @@ class TestGet_coef_tests(unittest.TestCase):
         self.assertTrue(actual < expected_high)
         self.assertTrue(actual > expected_low)
 
-        # # Test residuals
-        # expected = pd.Series(data=[-8.8277, -0.8908, 0.2418, 1.1893, 2.8292],
-        #                      index=['min', '25%', '50%', '75%', 'max'])
-        # expected.name = 'Residuals'
-        #
-        # actual = summary['residuals'].drop('std')
-        #
-        # pd.testing.assert_series_equal(actual, expected, check_less_precise=4)
-        #
-        # # Test general
-        # expected = pd.Series(data=[1.686, 570.3, -99, 0.8972, -99],
-        #                      index=['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2'])
-        # expected.name = 'General'
-        #
-        # actual = summary['general']
-        #
-        # self.assertAlmostEqual(actual['f-stat'], expected['f-stat'], places=1)
-        #
-        # expected.drop('f-stat', inplace=True)
-        # actual.drop('f-stat', inplace=True)
-        #
-        # pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
 
 class TestGet_residuals_data(unittest.TestCase):
     '''
@@ -341,6 +319,47 @@ class TestGet_general_data(unittest.TestCase):
         actual.drop('f-stat', inplace=True)
 
         pd.testing.assert_series_equal(actual, expected, check_less_precise=3)
+
+
+class TestGet_high_p_features(unittest.TestCase):
+    '''
+    This class tests sklearn_LR_plus.LrMetrics.get_general_data().
+    '''
+    def test_get_high_p_features_advertising_multi(self):
+        '''
+        Test the p values using Advertising data, r summary, and ISLR pg. 74
+        '''
+        df = pd.read_csv('Advertising.csv')
+
+        Y = df['sales']
+        X = df[['TV', 'radio', 'newspaper']]
+
+        # Test that values are known
+        expected = pd.Series(data=np.array([0.0, 0.0, 0.0, 0.86]),
+                             index=['Intercept', 'TV', 'radio', 'newspaper'])
+        lrm = lrp.LrMetrics(X, Y)
+        actual = lrm.get_p_values()
+
+        np.testing.assert_almost_equal(actual.values, expected.values, decimal=2)
+        self.assertListEqual(actual.index.tolist(), expected.index.tolist())
+
+        # Test with default q
+        expected = ['newspaper']
+        actual = lrm.get_high_p_features()
+
+        self.assertListEqual(expected, actual)
+
+        # Test with q=0.5
+        expected = ['newspaper']
+        actual = lrm.get_high_p_features(0.5)
+
+        self.assertListEqual(expected, actual)
+
+        # Test with q=0.9
+        expected = []
+        actual = lrm.get_high_p_features(0.9)
+
+        self.assertListEqual(expected, actual)
 
 
 if __name__ == '__main__':
