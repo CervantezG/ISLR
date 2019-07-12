@@ -3,9 +3,32 @@ import pandas as pd
 
 from scipy import stats
 
+# TODO: Create as a class that takes reg, X, and Y as parameters.  This could solve the "overload" problem below.
 # TODO: "Overload" functions so that I can not redo work when calling t-value, p-values, etc. - https://stackoverflow.com/questions/7113032/overloaded-functions-in-python
 # TODO: Add plots.  I believe I have some of the plots to add on my hand written notes.
 # TODO: Add mixed selection automation (ISLR pg. 79). POTENTIAL_OPTIONS: Fix skew response, Fix skew predictors, lambda new columns, collinearity drop, collinearity combine
+
+
+'''
+1. Get p simple linear regressions.
+2. Get reg with lowest RSS
+3. Add that feature with lowest RSS to the list of features you want to use.
+4. Get a summmary of multiple linaer regression (model must be traind)
+5. Look at p values for multi LR.  If any are above q then drop that value from features list
+6. Go to step 2
+'''
+
+class Summary:
+    def __init__(self, reg, X, Y):
+        # The fitted linear regression model from scikit-learn
+        self.reg = reg;
+
+        # Get important data from X and Y before converting them to numpy arrays
+        self.columns = X.columns.tolist();
+        self.n = Y.size;
+
+    def test(self):
+        print(self.columns)
 
 def get_standard_errors(reg, X, Y):
     '''
