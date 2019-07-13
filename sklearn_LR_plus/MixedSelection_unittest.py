@@ -102,6 +102,6 @@ class TestMixed_selection(unittest.TestCase):
 
             self.assertListEqual(expected, actual)
 
+
 if __name__ == '__main__':
     unittest.main()
-

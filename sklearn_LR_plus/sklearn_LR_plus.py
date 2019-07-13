@@ -198,7 +198,8 @@ class MixedSelection:
             temp_X = self.X[features]
             multi_reg = LrMetrics(temp_X, self.Y)
             for feat in multi_reg.get_high_p_features(q):
-                features.remove(feat)
+                if feat != 'Intercept':
+                    features.remove(feat)
 
         final_X = self.X[features]
         return LrMetrics(final_X, self.Y)
