@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="199" column="34" lean-forward="true" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="34" />
+            <state relative-caret-position="187">
+              <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -134,22 +134,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in sklearn_LR_plus_unittest.py">
-    <configuration name="pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="ISLR" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sklearn_LR_plus" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.pytest in MixedSelection_unittest.py">
     <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="ISLR" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -178,6 +163,21 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in MixedSelection_unittest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ISLR" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sklearn_LR_plus" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/sklearn_LR_plus/MixedSelection_unittest.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest in linear_model_stats_unittest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -212,11 +212,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in MixedSelection_unittest.py" />
         <item itemvalue="Python tests.pytest in sklearn_LR_plus_unittest.py" />
         <item itemvalue="Python tests.pytest in linear_model_stats_unittest.py" />
         <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" />
         <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestSummary.test_summary_advertising_simple" />
-        <item itemvalue="Python tests.pytest for sklearn_LR_plus_unittest.TestGet_p_values.test_get_p_values_advertising_multi" />
       </list>
     </recent_temporary>
   </component>
@@ -234,9 +234,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 03m 50s.xml">
-      <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_for_sklearn_LR_plus_unittest_TestSummary_test_get_summary_advertising_multi - 2019.07.05 at 17h 04m 39s.xml">
       <configuration name="pytest for sklearn_LR_plus_unittest.TestSummary.test_get_summary_advertising_multi" configurationId="tests" />
     </history-entry>
@@ -264,6 +261,9 @@
     <history-entry file="pytest_in_sklearn_LR_plus_unittest_py - 2019.07.05 at 17h 10m 53s.xml">
       <configuration name="pytest in sklearn_LR_plus_unittest.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_in_MixedSelection_unittest_py - 2019.07.16 at 12h 25m 05s.xml">
+      <configuration name="pytest in MixedSelection_unittest.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -274,7 +274,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -353,8 +353,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sklearn_LR_plus/sklearn_LR_plus.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="199" column="34" lean-forward="true" selection-start-line="199" selection-start-column="34" selection-end-line="199" selection-end-column="34" />
+        <state relative-caret-position="187">
+          <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

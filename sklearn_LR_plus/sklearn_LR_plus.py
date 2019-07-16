@@ -4,12 +4,23 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from scipy import stats
 
-# TODO: "Overload" functions so that I can not redo work when calling t-value, p-values, etc. - https://stackoverflow.com/questions/7113032/overloaded-functions-in-python
 # TODO: Add plots.  I believe I have some of the plots to add on my hand written notes.
-# TODO: Add mixed selection automation (ISLR pg. 79). POTENTIAL_OPTIONS: Fix skew response, Fix skew predictors, lambda new columns, collinearity drop, collinearity combine
 
 class LrMetrics:
+    '''A class for linear regression metrics.  These metrics are inspired by ISLR Ch. 3 and R.
+
+    TODO: Add attributes and change to use properties.
+    '''
+
+
     def __init__(self, X, Y, reg=None):
+        '''A LrMetric constructor that takes a X, Y, and an optional linear model.  If the linear model is not provided
+        one is created.
+
+        :param X: A pandas DataFrame of data used for predictions
+        :param Y: A pandas Series of the value trying to be predicted
+        :param reg: A linear regression estimator
+        '''
         # If reg = None then run create a scikit learn linear model
         if reg == None:
             reg = LinearRegression()
@@ -40,6 +51,10 @@ class LrMetrics:
 
 
     def get_coef_rse(self):
+        '''Calculates the residual standard errors for all coefficients.
+
+        :return: a numpy array of the RSE of the coefficients
+        '''
         if self.coef_rse is None:
             self.coef_rse = np.sqrt(
                 np.power((self.X @ self.B.reshape(self.X.shape[1], 1)) - np.array(pd.DataFrame(self.Y)), 2).sum() / (
@@ -47,13 +62,10 @@ class LrMetrics:
         return self.coef_rse
 
     def get_standard_errors(self):
-        '''
+        '''Calculates the standard errors of the model.  For more information on implementation see link below.
         http://reliawiki.org/index.php/Multiple_Linear_Regression_Analysis
 
-        :param reg:
-        :param X:
-        :param Y:
-        :return:
+        :return: A Series of standard errors
         '''
         if self.standard_errors is None:
             var = self.get_coef_rse()**2
@@ -63,26 +75,18 @@ class LrMetrics:
         return self.standard_errors
 
     def get_t_values(self):
-        '''
-        ISLR pg. 72?
+        '''Calculates the t-values for the coefficients.  See more about t-values in  ISLR pg. 72.
 
-        :param reg:
-        :param X:
-        :param y:
-        :return:
+        :return: A Series of t-values
         '''
         if self.t_values is None:
             self.t_values = self.B / self.get_standard_errors()
         return self.t_values
 
     def get_p_values(self):
-        '''
-        ISLR pg. 72?
+        '''Calculates the p-values for the coefficients.  See more about p-values in  ISLR pg. 72.
 
-        :param reg:
-        :param X:
-        :param y:
-        :return:
+        :return: A Series of p-values
         '''
         # t_values = get_t_values(reg, X, Y)
         p_func = lambda t: stats.t.sf(np.abs(t), self.n - 1) * 2
@@ -90,6 +94,11 @@ class LrMetrics:
         return self.get_t_values().apply(p_func)
 
     def get_coef_tests(self):
+        '''Get Coefficient, Standard Error, t-value, and p-value in the form of a DataFrame.  This is modeling on the
+        summary function in R.
+
+        :return: DataFrame of Coefficient, Standard Error, t-value, and p-value
+        '''
         columns = ['Coef.', 'Std. Error', 't-value', 'p-value']
         idx = ['Intercept'] + self.features
         se_B = pd.Series(self.B, index=idx)
@@ -110,12 +119,10 @@ class LrMetrics:
 
     # TODO: Add p-value and adjusted R^2 to __general.  Currently they have placeholders of -99.
     def get_general_data(self):
-        '''
+        '''Get the residual standard error, the f-statistic, p-value, R^2, and adjusted R^2 in the form on a
+        Series.  This is inspired by the summary function in R.
 
-        :param reg:
-        :param X:
-        :param Y:
-        :return:
+        :return: The RSE, the f-stat, p-value, R^2, and adjusted R^2 in the form on a Series
         '''
         idx = ['rse', 'f-stat', 'p-value', 'R^2', 'adj_R^2']
 
@@ -130,35 +137,47 @@ class LrMetrics:
         se.name = 'General'
         return se
 
-
     def get_tss(self):
+        '''Gets the total sum of squares.  A calculation will happen if the first time this method is being called.
+
+        :return: the total sum of squares
+        '''
         if self.tss is None:
             self.tss = np.power(self.Y - self.Y.mean(), 2).sum()
         return self.tss
 
-
     def get_rss(self):
+        '''Gets the residual sum of squares.  A calculation will happen if the first time this method is being called.
+
+        :return: the residual sum of squares
+        '''
         if self._rss is None:
             self._rss = np.power(self.reg.predict(self.X[:, 1:]) - self.Y, 2).sum()
         return self._rss
 
-
     def get_rse(self):
+        '''Gets the residual standard error.  A calculation will happen if the first time this method is being called.
+
+        :return: the residual standard error
+        '''
         if self.rse is None:
             self.rse = np.sqrt(self.get_rss() / (self.Y.size - self.p - 1))
         return self.rse
 
-
     def get_f_stat(self):
+        '''Gets the f-statistic.  A calculation will happen if the first time this method is being called.
+
+        :return: the f-statistic
+        '''
         if self.f_stat is None:
             self.f_stat = ((self.get_tss() - self.get_rss()) / self.p) / (self.get_rss() / (self.n - self.p - 1))
         return self.f_stat
 
     def get_high_p_features(self, q=0.05):
-        '''
+        '''A function to get the p-values where the the value is greater than q.
 
-        :param q:
-        :return:
+        :param q: p-value threshold
+        :return: list of features with a high p-value
         '''
         return self.get_p_values().index[self.get_p_values() > q].tolist()
 
