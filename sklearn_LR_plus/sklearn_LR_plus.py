@@ -195,16 +195,25 @@ class MixedSelection:
             feature = simp_LRs[i].features[0]
             features.append(feature)
 
-            temp_X = self.X[features]
-            multi_reg = LrMetrics(temp_X, self.Y)
-            for feat in multi_reg.get_high_p_features(q):
-                if feat != 'Intercept':
-                    features.remove(feat)
+            self.__check_features_reg(features, q)
 
         final_X = self.X[features]
         return LrMetrics(final_X, self.Y)
 
 
+    def __check_features_reg(self, features, q):
+        '''
+        Create a linear regression with all features and then remove features that have above q value.
+
+        :param features: the features of the linear regression
+        :param q: p-value threshold
+        '''
+        temp_X = self.X[features]
+        multi_reg = LrMetrics(temp_X, self.Y)
+        for feat in multi_reg.get_high_p_features(q):
+            if feat != 'Intercept':
+                features.remove(feat)
+                self.__check_features_reg(features, q)
 
 
 ######################################################################
